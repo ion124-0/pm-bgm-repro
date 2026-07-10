@@ -25,7 +25,7 @@ Problem builds observed:
 
 ### Star Rod / BGM replacement route
 
-Having just one modded bgm file at a time doesn’t crash, so there’s no way to isolate any individual file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. 
+Injecting just one modded bgm file at a time doesn’t crash, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. 
 
 Crash points observed include:
 
