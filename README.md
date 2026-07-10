@@ -1,8 +1,8 @@
 # Paper Mario BGM change crash repro
 
-This is a small reproduction package for crashes encountered while changing Paper Mario 64 BGM behavior / BGM assets.
+This is a small repro to get help with crashes that occur on Everdrive when trying to change the bgm of Paper Mario on N64.
 
-This repo intentionally does not include:
+This repo does not include:
 - ROMs
 - baseroms
 - built game files
@@ -12,7 +12,7 @@ This repo intentionally does not include:
 
 ## Goal
 
-Investigate why BGM changes that appear to build or run in emulator can crash on real hardware / EverDrive, and why combined BGM replacement changes crash during early scripted music transitions.
+Fix hardware crashes.
 
 ## Observed issues
 
@@ -29,25 +29,18 @@ Problem builds observed:
 - `papermario_nm_global_volume_zero_test.z64`
   - size: `41943024`
   - 16 bytes shorter than clean decomp base
-  - ran in emulator in earlier testing, but failed on EverDrive
-
-- `papermario_nm_song_request_volume_1_test.z64`
-  - size: `41943056`
-  - 16 bytes larger than clean decomp base
-
-Because these no longer match the clean base size, they are not safe for direct byte-patch comparison.
+  - did not produce a reliable working test ROM; emulator testing was not a valid success case
 
 ### Star Rod / BGM replacement route
 
-Single BGM changes often produce tiny ROM diffs and do not always crash by themselves.
+Having just one modded bgm file at a time doesn’t crash, so there’s no way to isolate any individual file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. 
 
-Combined BGM changes crash during early music transitions. Crash points observed include:
+Crash points observed include:
 
-- before / during Star Spirits healing Mario after the first Bowser scene
+- majority of crashes occured when Mario and Luigi first reached Peach's Castle Party
+- both before and during Star Spirits healing Mario after the first Bowser fight
 - after taking control near Goomba Village
 - entering the Goomba family house / Goomba Village transition
-
-This suggests the issue may involve BGM transition/resume/fade/push/pop behavior rather than one obviously bad BGM file.
 
 ## Included here
 
@@ -55,5 +48,3 @@ This suggests the issue may involve BGM transition/resume/fade/push/pop behavior
 - small scripts used for BGM mapping/diff analysis
 - text reports and crash notes
 - ROM size/hash notes
-
-No ROMs or extracted assets are included.
