@@ -25,7 +25,7 @@ Problem builds observed:
 
 ### Star Rod / BGM replacement route
 
-Injecting just one modded bgm file at a time doesn’t crash, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. 
+Injecting just one custom modded bgm file from mamar in assets/mod/us doesn’t crash in game at snd_song_request_pop / bgm_update_music_control / au_bgm_process_resume, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. Other attempts included ebuilding and injecting a new audio.sbn into a working rom and direct hex edits, but they all result in the exact same crashes.
 
 Crash points observed include:
 
