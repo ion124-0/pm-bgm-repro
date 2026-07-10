@@ -1,10 +1,10 @@
-# Paper Mario BGM change crash repro
+# Paper Mario bgm change crash repro
 
-This is a small repro to get help with crashes that occur on Everdrive when trying to change the bgm of Paper Mario on N64.
+This is a small repro to get help with crashes that occur on EverDrive when trying to change Paper Mario 64 bgm behavior or bgm assets.
 
 ## Goal
 
-Fix hardware crashes.
+Fix hardware crashes caused by bgm changes.
 
 ## Observed issues
 
@@ -18,25 +18,38 @@ A clean decomp build produced a valid vanilla ROM:
 
 Problem builds observed:
 
+A clean vanilla DX build worked on Mupen emulator but not on Everdrive and not even on Project64. DX build crashes on Everdrive and PJ64, even when vanilla.
+
+This build here was one of many tests made in the Decomp that involved placing changed bgm files that were made in mamar into assets/mod/audio, and having them replace the original bgm files that were in assets/us/audio. The rom made, but crashes on both emulator and original hardware.
 - `papermario_nm_global_volume_zero_test.z64`
   - size: `41943024`
   - 16 bytes shorter than clean decomp base
-  - did not produce a reliable working test ROM; emulator testing was not a valid success case
 
-### Star Rod / BGM replacement route
+Other attempts included:
+**Changing `bgm_control.c`. **
+Those builds crashed on boot on EverDrive with a TLB exception error. 
+**Rebuilding and injecting a new `audio.sbn` into a working ROM and direct hex edits. **
+These produced the same types of crashes. 
 
-Injecting just one custom modded bgm file from mamar in assets/mod/us doesn’t crash in game at snd_song_request_pop / bgm_update_music_control / au_bgm_process_resume, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. Other attempts included ebuilding and injecting a new audio.sbn into a working rom and direct hex edits, but they all result in the exact same crashes. These same crashes happen from the Paper Mario Decomp, Paper Mario DX, and Star Rod Classic v0.5.3. Other attempts include changing bgm_control.c which result in crash upon boot in Everdrive with a TLB exception error.
+Every single modded rom with multiple bgm changes has crashed, regardless of whether it was made in Paper Mario Decomp or Star Rod Classic v0.5.3, DX builds never work in EverDrive.
+
+### Star Rod / bgm replacement route
+
+Injecting one custom/modded bgm file from Mamar does not appear to crash by itself during the tested resume/pop/fade paths, including `snd_song_request_pop`, `bgm_update_music_control`, and `au_bgm_process_resume`.
+
+Roms with single bgm file changes don't crash. Crashes occur when multiple bgm files are changed together, which means it's not any one bad modded bgm file that's causing the issue.
 
 Crash points observed include:
 
-- majority of crashes occured when Mario and Luigi first reached Peach's Castle Party
-- both before and during Star Spirits healing Mario after the first Bowser fight
-- after taking control near Goomba Village
-- entering the Goomba family house / Goomba Village transition
+- During the first dialogue box after Mario and Luigi first enter Peach's Castle party
+- before or during Star Spirits healing Mario after the first Bowser fight
+- after taking control near Goomba Village and entering the Goomba house
 
 ## Included here
 
-- source diffs for BGM-control experiments
-- small scripts used for BGM mapping/diff analysis
+- source diffs for bgm-control experiments
+- small scripts used for bgm mapping/diff analysis
 - text reports and crash notes
 - ROM size/hash notes
+
+No ROMs or extracted assets are included.
