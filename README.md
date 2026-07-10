@@ -25,7 +25,7 @@ Problem builds observed:
 
 ### Star Rod / BGM replacement route
 
-Injecting just one custom modded bgm file from mamar in assets/mod/us doesn’t crash in game at snd_song_request_pop / bgm_update_music_control / au_bgm_process_resume, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. Other attempts included ebuilding and injecting a new audio.sbn into a working rom and direct hex edits, but they all result in the exact same crashes.
+Injecting just one custom modded bgm file from mamar in assets/mod/us doesn’t crash in game at snd_song_request_pop / bgm_update_music_control / au_bgm_process_resume, so there’s no way to isolate any individual bgm file as the cause. The crash happens if you have a bunch of modded bgm files, individual modded files don’t cause it to crash, but multiple ones cause it to break resume/pop/fade behavior. Other attempts included ebuilding and injecting a new audio.sbn into a working rom and direct hex edits, but they all result in the exact same crashes. These same crashes happen from the Paper Mario Decomp, Paper Mario DX, and Star Rod Classic v0.5.3. Other attempts include changing bgm_control.c which result in crash upon boot in Everdrive with a TLB exception error.
 
 Crash points observed include:
 
