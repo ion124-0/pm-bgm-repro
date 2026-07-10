@@ -48,7 +48,6 @@ Crash points observed include:
 ## Included here
 
 - source diffs for bgm-control experiments
-- small scripts used for bgm mapping/diff analysis
 - text reports and crash notes
 - ROM size/hash notes
 
