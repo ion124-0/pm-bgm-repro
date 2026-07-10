@@ -2,14 +2,6 @@
 
 This is a small repro to get help with crashes that occur on Everdrive when trying to change the bgm of Paper Mario on N64.
 
-This repo does not include:
-- ROMs
-- baseroms
-- built game files
-- extracted game assets
-- BGM files
-- Nintendo assets
-
 ## Goal
 
 Fix hardware crashes.
