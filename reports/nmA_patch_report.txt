@@ -1,0 +1,13 @@
+nmA patch report
+
+Patched void functions:
+  bgm_push_song
+  bgm_pop_song
+  bgm_set_battle_song
+  bgm_pop_battle_song
+
+Skipped:
+  _bgm_set_song: s32
+  bgm_set_song: s32
+  bgm_fade_in_song: bool
+  bgm_set_song_variation: not_found

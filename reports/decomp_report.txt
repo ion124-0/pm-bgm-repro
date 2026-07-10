@@ -1,0 +1,113 @@
+DECOMP COMPARE REPORT
+Generated: 2026-07-10 01:54:13.134700
+Folder: C:\Users\X48\Documents\PM_Modding_1\pm_star_rod_classic\out\DECOMP_COMPARE
+
+Purpose:
+1. Compare decomp_base.z64 vs decomp_nm0.z64.
+2. Compare baserom.z64 vs decomp_base.z64.
+3. If baserom and decomp_base are identical excluding CRC, apply the decomp_nm0 patch to baserom.
+
+================================================================================
+PAIR 1: decomp_base.z64 vs decomp_nm0.z64
+decomp_base.z64: size=41943040 sha1=3837F44CDA784B466C9A2D99DF70D77C322B97A0 crcbytes=65 EE E5 3A ED 7D 73 3C
+decomp_nm0.z64: size=41943024 sha1=FFA3B8251373BA9027261657FD48DFF55A6DBF15 crcbytes=5F A1 7C 10 5A 55 62 F0
+Size match: False
+Sizes differ. Byte diff skipped.
+
+================================================================================
+PAIR 2: baserom.z64 vs decomp_base.z64
+patcher64plus.z64: size=41943040 sha1=5D6842DE42D9AA7BF50583F249AA75A63888757B crcbytes=25 D5 A5 77 22 B9 78 2D
+decomp_base.z64: size=41943040 sha1=3837F44CDA784B466C9A2D99DF70D77C322B97A0 crcbytes=65 EE E5 3A ED 7D 73 3C
+Size match: True
+Changed bytes excluding CRC: 6387
+Changed ranges excluding CRC: 1396
+First changed offset: 0x00008974
+Last changed offset: 0x00E266FB
+
+First changed ranges:
+  0x00008974-0x00008975 len 1
+  0x00008976-0x00008978 len 2
+  0x00064B41-0x00064B42 len 1
+  0x00064B43-0x00064B44 len 1
+  0x00064B47-0x00064B48 len 1
+  0x00064B4D-0x00064B4E len 1
+  0x00064B51-0x00064B52 len 1
+  0x00064B53-0x00064B54 len 1
+  0x00064B55-0x00064B56 len 1
+  0x00064B57-0x00064B58 len 1
+  0x00064B5A-0x00064B5B len 1
+  0x00064BC1-0x00064BC2 len 1
+  0x00064BC3-0x00064BC4 len 1
+  0x00064BC7-0x00064BC8 len 1
+  0x00064BCD-0x00064BCE len 1
+  0x00064BD1-0x00064BD2 len 1
+  0x00064BD3-0x00064BD4 len 1
+  0x00064BD5-0x00064BD6 len 1
+  0x00064BD7-0x00064BD8 len 1
+  0x00064BDA-0x00064BDB len 1
+  0x00065581-0x00065582 len 1
+  0x00065583-0x00065584 len 1
+  0x00065587-0x00065588 len 1
+  0x0006558D-0x0006558E len 1
+  0x00065591-0x00065592 len 1
+  0x00065593-0x00065594 len 1
+  0x00065595-0x00065596 len 1
+  0x00065597-0x00065598 len 1
+  0x0006559A-0x0006559B len 1
+  0x000655A1-0x000655A2 len 1
+  0x000655A3-0x000655A4 len 1
+  0x000655A7-0x000655A8 len 1
+  0x000655AD-0x000655AE len 1
+  0x000655B1-0x000655B2 len 1
+  0x000655B3-0x000655B4 len 1
+  0x000655B5-0x000655B6 len 1
+  0x000655B7-0x000655B8 len 1
+  0x000655BA-0x000655BB len 1
+  0x000655C1-0x000655C2 len 1
+  0x000655C3-0x000655C4 len 1
+  0x000655C7-0x000655C8 len 1
+  0x000655CD-0x000655CE len 1
+  0x000655D1-0x000655D2 len 1
+  0x000655D3-0x000655D4 len 1
+  0x000655D5-0x000655D6 len 1
+  0x000655D7-0x000655D8 len 1
+  0x000655DA-0x000655DB len 1
+  0x000655E1-0x000655E2 len 1
+  0x000655E3-0x000655E4 len 1
+  0x000655E7-0x000655E8 len 1
+  0x000655ED-0x000655EE len 1
+  0x000655F1-0x000655F2 len 1
+  0x000655F3-0x000655F4 len 1
+  0x000655F5-0x000655F6 len 1
+  0x000655F7-0x000655F8 len 1
+  0x000655FA-0x000655FB len 1
+  0x0006A7F6-0x0006A7F7 len 1
+  0x0006A8D2-0x0006A8D3 len 1
+  0x0006A90E-0x0006A90F len 1
+  0x0006A922-0x0006A923 len 1
+  0x0006A9C2-0x0006A9C3 len 1
+  0x0006A9D6-0x0006A9D7 len 1
+  0x0006AA12-0x0006AA13 len 1
+  0x0006AA76-0x0006AA77 len 1
+  0x0006AA9E-0x0006AA9F len 1
+  0x0006AAB2-0x0006AAB3 len 1
+  0x0006ABA2-0x0006ABA3 len 1
+  0x0006ABB6-0x0006ABB7 len 1
+  0x0006ABF2-0x0006ABF3 len 1
+  0x0006AC06-0x0006AC07 len 1
+  0x0006AC56-0x0006AC57 len 1
+  0x0006AC6A-0x0006AC6B len 1
+  0x0006AC7E-0x0006AC7F len 1
+  0x0006ACBA-0x0006ACBB len 1
+  0x0006ACCE-0x0006ACCF len 1
+  0x0006ACE2-0x0006ACE3 len 1
+  0x0006ACF6-0x0006ACF7 len 1
+  0x0006ADAA-0x0006ADAB len 1
+  0x0008089B-0x0008089C len 1
+  0x0013A9E7-0x0013A9E8 len 1
+  ... 1316 more ranges not printed
+
+================================================================================
+PATCH RESULT
+Did NOT make baserom_nm0.z64.
+Reason: decomp_base.z64 and decomp_nm0.z64 have different sizes.

@@ -1,0 +1,92 @@
+--- /home/westen/papermario_nm_clean2_VANILLA_BACKUP_20260709_152500/src/audio/bgm_control.c	2026-07-09 15:19:42.447598965 -0700
++++ /home/westen/papermario_nm_clean2/src/audio/bgm_control.c	2026-07-10 02:17:54.471072024 -0700
+@@ -2,6 +2,13 @@
+ #include "npc.h"
+ #include "audio.h"
+ 
++
++// NO_BGM_B_PATCH
++#ifndef PM_NO_BGM
++#define PM_NO_BGM 1
++#endif
++
++
+ void bgm_update_volume(void);
+ void bgm_set_target_volume(s32 volume);
+ 
+@@ -186,6 +193,10 @@
+ }
+ 
+ s32 _bgm_set_song(s32 playerIndex, s32 songID, s32 variation, s32 fadeOutTime, s16 volume) {
++#if PM_NO_BGM
++    return 0;
++#endif
++
+     MusicControlData* music;
+     s32 mapSongVariation;
+ 
+@@ -228,12 +239,20 @@
+ }
+ 
+ s32 bgm_set_song(s32 playerIndex, s32 songID, s32 variation, s32 fadeOutTime, s16 volume) {
++#if PM_NO_BGM
++    return 0;
++#endif
++
+     gMusicControlData[playerIndex].flags &= ~MUSIC_FLAG_POPPING;
+ 
+     return _bgm_set_song(playerIndex, songID, variation, fadeOutTime, volume);
+ }
+ 
+ bool bgm_fade_in_song(s32 playerIndex, s32 songID, s32 variation, s32 fadeInTime, s16 fadeStartVolume, s16 fadeEndVolume) {
++#if PM_NO_BGM
++    return 0;
++#endif
++
+     MusicControlData* music;
+     s32 mapSongVariation;
+ 
+@@ -379,6 +398,10 @@
+ }
+ 
+ void bgm_pop_song(void) {
++#if PM_NO_BGM
++    return;
++#endif
++
+     MusicControlData* music = gMusicControlData;
+ 
+     if (gGameStatusPtr->demoState == DEMO_STATE_NONE) {
+@@ -388,6 +411,10 @@
+ }
+ 
+ void bgm_push_song(s32 songID, s32 variation) {
++#if PM_NO_BGM
++    return;
++#endif
++
+     MusicControlData* music = gMusicControlData;
+ 
+     if (gGameStatusPtr->demoState == DEMO_STATE_NONE) {
+@@ -400,6 +427,10 @@
+ }
+ 
+ void bgm_pop_battle_song(void) {
++#if PM_NO_BGM
++    return;
++#endif
++
+     MusicControlData* music = gMusicControlData;
+ 
+     if (gGameStatusPtr->demoState == DEMO_STATE_NONE) {
+@@ -429,6 +460,10 @@
+ }
+ 
+ void bgm_set_battle_song(s32 songID, s32 variation) {
++#if PM_NO_BGM
++    return;
++#endif
++
+     MusicControlData* music = gMusicControlData;
+ 
+     music->battleSongID = songID;

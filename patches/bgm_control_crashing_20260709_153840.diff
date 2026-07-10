@@ -1,0 +1,83 @@
+diff --git a/src/audio/bgm_control.c b/src/audio/bgm_control.c
+index 6e7f50d28..cd324e6a9 100644
+--- a/src/audio/bgm_control.c
++++ b/src/audio/bgm_control.c
+@@ -174,10 +174,11 @@ void bgm_update_music_control(void) {
+                         music->requestedSongID = music->savedSongID;
+                         music->variation = music->savedVariation;
+                         music->songName = music->savedSongName;
++                        bgm_set_target_volume(MusicDefaultVolume);
+                         music->state = MUSIC_STATE_IDLE;
+                         music->flags |= MUSIC_FLAG_PLAYING;
+                         music->flags &= ~MUSIC_FLAG_POPPING;
+-                    }
++}
+                 }
+                 break;
+         }
+@@ -185,10 +186,51 @@ void bgm_update_music_control(void) {
+     bgm_update_volume();
+ }
+ 
++/* DX_NO_MUSIC_PATCH_BEGIN */
++static s32 dx_nomusic_should_keep_song(s32 songID) {
++    if (songID <= AU_SONG_NONE) {
++        return 1;
++    }
++
++    switch (songID) {
++        case 0x1C: // CheerfulBoosMansion
++        case 0x2D: // RadioIslandSounds
++        case 0x2E: // RadioHotHits
++        case 0x2F: // RadioGoldenOldies
++        case 0x42: // ItemUpgrade
++        case 0x44: // PhonographMusic
++        case 0x45: // TutankoopaTheme
++        case 0x4E: // YoshiKidsFound
++        case 0x53: // TutankoopaWarning
++        case 0x54: // TutankoopaRevealed
++        case 0x77: // PeachQuizIntro
++        case 0x7C: // MerleeSpell
++        case 0x84: // CandyCanes
++        case 0x8A: // FlowerGateAppears
++        case 0x8C: // PopDivaSong
++        case 0x8D: // BooMinigame
++            return 1;
++
++        default:
++            return 0;
++    }
++}
++
++static s16 dx_nomusic_volume_for_song(s32 songID, s16 volume) {
++    if (dx_nomusic_should_keep_song(songID)) {
++        return volume;
++    }
++
++    return 0;
++}
++/* DX_NO_MUSIC_PATCH_END */
++
+ s32 _bgm_set_song(s32 playerIndex, s32 songID, s32 variation, s32 fadeOutTime, s16 volume) {
+     MusicControlData* music;
+     s32 mapSongVariation;
+ 
++    volume = dx_nomusic_volume_for_song(songID, volume);
++
+     if (gGameStatusPtr->demoState != DEMO_STATE_NONE) {
+         return 1;
+     }
+@@ -237,6 +279,13 @@ bool bgm_fade_in_song(s32 playerIndex, s32 songID, s32 variation, s32 fadeInTime
+     MusicControlData* music;
+     s32 mapSongVariation;
+ 
++
++    if (!dx_nomusic_should_keep_song(songID)) {
++        fadeStartVolume = 0;
++        fadeEndVolume = 0;
++    }
++
++
+     if (gGameStatusPtr->demoState) {
+         return true;
+     }

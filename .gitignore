@@ -1,0 +1,36 @@
+# Never upload ROMs or game dumps
+*.z64
+*.n64
+*.v64
+*.rom
+baserom*
+*baserom*
+*.sfc
+*.smc
+
+# Do not upload extracted/build assets
+assets/
+ver/
+build/
+out/
+expected/
+.cache/
+.ninja_*
+build.ninja
+compile_commands.json
+
+# Do not upload audio/game assets
+*.bgm
+*.sbn
+*.bk
+*.mseq
+*.sef
+*.per
+*.prg
+mamar_bgm/
+
+# local junk
+*.bak
+*.tmp
+__pycache__/
+.DS_Store
