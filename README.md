@@ -45,6 +45,8 @@ Crash points observed include:
 - before or during Star Spirits healing Mario after the first Bowser fight
 - after taking control near Goomba Village and entering the Goomba house
 
+I also found that doing single existing-call edits also doesn't crash. I changed the title-screen bgm_set_song(..., VOL_LEVEL_FULL) final argument to 0 in bgm_player.c. It muted the second title-screen song without crashing. When I try to apply it to many songs, it black screens upon startup. I also tried changing bgm in snd_interface.c track-mute approach, and it also crashed at startup; then I changed about 509 BGM calls the occurring files within the src folder, but that also crashed on startup.
+
 ## Included here
 
 - source diffs for bgm-control experiments
